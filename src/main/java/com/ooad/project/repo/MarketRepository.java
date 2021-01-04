@@ -1,6 +1,7 @@
 package com.ooad.project.repo;
 
 import com.ooad.project.entity.Expert;
+import com.ooad.project.entity.Market;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -11,5 +12,5 @@ import org.springframework.data.repository.CrudRepository;
  * Student Number:17302010081
  * Note:
  */
-public interface MarketRepository extends CrudRepository<Expert, Integer> {
+public interface MarketRepository extends CrudRepository<Market, Integer> {
 }

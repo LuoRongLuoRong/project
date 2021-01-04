@@ -1,14 +1,22 @@
-DROP TABLE IF EXISTS expert;
+DROP TABLE IF EXISTS experts;
 
-CREATE TABLE expert (
+CREATE TABLE experts (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
 
 
-DROP TABLE IF EXISTS expert;
+DROP TABLE IF EXISTS markets;
 
-CREATE TABLE expert (
+CREATE TABLE markets (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   name VARCHAR(255) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+                       id INT AUTO_INCREMENT  PRIMARY KEY,
+                       name VARCHAR(255) NOT NULL
 );
