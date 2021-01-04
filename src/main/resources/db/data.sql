@@ -1,4 +1,4 @@
-INSERT INTO expert (name) VALUES
+INSERT INTO experts (name) VALUES
     ('Aliko'),
     ('Bill'),
     ('Folrunsho');

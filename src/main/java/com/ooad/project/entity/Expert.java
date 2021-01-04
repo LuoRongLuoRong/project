@@ -22,7 +22,7 @@ public class Expert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
-    private String id;
+    private int id;
 
     @Column
     private String name;
