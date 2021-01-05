@@ -5,12 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * User: Admin
- * Date: 2021/1/4
- * Time: 16:51
+ * Date: 2021/1/5
+ * Time: 16:25
  * Author: LuoRong
  * Student Number:17302010081
  * Note:
@@ -19,25 +18,18 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "market_tasks")
-public class MarketTask {
+public class ProductCheckRecord {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
     private int id;
 
     @Transient
-    private Market market;
+    private Product product;
     @Transient
-    private List<Product> products;
-    @Transient
-    private MarketTaskReport marketTaskReport;
-
+    private Date finishDate; // 抽检日期
     @Column
-    private boolean isFinished;
+    private int unqualifiedNumber; // 不合格数目
     @Column
-    private Date startDate;
-    @Column
-    private Date deadlineDate;
-    @Column
-    private Date finishDate;
+    private boolean isFinished; // 抽检结束
 }

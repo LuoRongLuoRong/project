@@ -4,6 +4,8 @@ import com.ooad.project.entity.Expert;
 import com.ooad.project.entity.Product;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * User: Admin
  * Date: 2021/1/4
@@ -13,4 +15,7 @@ import org.springframework.data.repository.CrudRepository;
  * Note:
  */
 public interface ProductRepository extends CrudRepository<Product, Integer> {
+    List<Product> findAll();
+//    Product findById(int id);
+//    Product findByName(String name);
 }

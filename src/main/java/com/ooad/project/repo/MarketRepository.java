@@ -2,7 +2,10 @@ package com.ooad.project.repo;
 
 import com.ooad.project.entity.Expert;
 import com.ooad.project.entity.Market;
+import com.ooad.project.entity.Product;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /**
  * User: Admin
@@ -13,4 +16,11 @@ import org.springframework.data.repository.CrudRepository;
  * Note:
  */
 public interface MarketRepository extends CrudRepository<Market, Integer> {
+    int getScoreById(int id);
+    int getScoreByName(String name);
+    Market save(Market market);
+
+//    Market findById(int id);
+//    Market findByName(String name);
+//    List<Market> findAll();
 }

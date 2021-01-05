@@ -44,5 +44,9 @@ src
 
 
 
+`CrudRepository`实现基本的 CRUD 操作，包括 count，delete，deleteById，save，saveAll，findById 和 findAll。
+
+
+
 
 

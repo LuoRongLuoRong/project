@@ -5,39 +5,35 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * User: Admin
  * Date: 2021/1/4
- * Time: 16:51
+ * Time: 20:26
  * Author: LuoRong
  * Student Number:17302010081
  * Note:
+ * 记录每一条得分 / 扣分的原因
  */
 
 @Getter
 @Setter
 @Entity
-@Table(name = "market_tasks")
-public class MarketTask {
+@Table(name = "records")
+public class ScoreRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
     private int id;
 
-    @Transient
-    private Market market;
-    @Transient
-    private List<Product> products;
-    @Transient
-    private MarketTaskReport marketTaskReport;
+    @Column
+    private Date date;
 
     @Column
-    private boolean isFinished;
+    private String description;
+
     @Column
-    private Date startDate;
-    @Column
-    private Date deadlineDate;
-    @Column
-    private Date finishDate;
+    private int score;
+
+    @Transient
+    private Market market;
 }

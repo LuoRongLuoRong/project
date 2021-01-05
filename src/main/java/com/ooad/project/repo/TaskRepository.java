@@ -4,6 +4,8 @@ import com.ooad.project.entity.Product;
 import com.ooad.project.entity.Task;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * User: Admin
  * Date: 2021/1/4
@@ -13,4 +15,10 @@ import org.springframework.data.repository.CrudRepository;
  * Note:
  */
 public interface TaskRepository extends CrudRepository<Task, Integer> {
+
+    List<Product> getProductsById(int id);
+
+    List<Task> findAll();
+    Task findById(int id);
+    Task findByName(String name);
 }

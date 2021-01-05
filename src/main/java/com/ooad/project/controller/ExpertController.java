@@ -1,21 +1,11 @@
 package com.ooad.project.controller;
 
 import com.ooad.project.entity.Expert;
-import com.ooad.project.repo.ExpertRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
-import com.ooad.project.service.ExpertService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,11 +20,4 @@ import java.util.List;
 @RestController
 public class ExpertController {
 
-    @Autowired
-    private ExpertService expertService;
-
-    @GetMapping("/experts")
-    public List<Expert> allUsers() {
-        return expertService.findAll();
-    }
 }

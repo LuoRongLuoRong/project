@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * User: Admin
  * Date: 2020/12/26
@@ -16,5 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ExpertRepository extends CrudRepository<Expert, Integer> {
-    Expert findById(int id);
+    List<Expert> findAll();
+//    Expert findById(int id);
+//    Expert findByName(String name);
 }

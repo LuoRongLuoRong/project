@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * User: Admin
@@ -27,4 +28,9 @@ public class Market {
     @Column
     private String name;
 
+    @Column
+    private int score;
+
+    @Transient
+    private List<ScoreRecord> records;
 }
