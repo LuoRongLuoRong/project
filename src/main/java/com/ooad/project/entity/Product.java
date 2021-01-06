@@ -27,4 +27,7 @@ public class Product {
     @Column
     private String name;
 
+    public Product(String name) {
+        this.name = name;
+    }
 }

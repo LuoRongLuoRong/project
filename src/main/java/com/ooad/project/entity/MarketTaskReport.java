@@ -64,4 +64,8 @@ public class MarketTaskReport {
             unqualifiedProductMap.put(product, record);
         }
     }
+
+    public void addProductCheckRecord(ProductCheckRecord productCheckRecord) {
+        unqualifiedProductMap.put(productCheckRecord.getProduct(), productCheckRecord);
+    }
 }

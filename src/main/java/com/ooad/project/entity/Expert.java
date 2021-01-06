@@ -26,4 +26,8 @@ public class Expert {
 
     @Column
     private String name;
+
+    public Expert(String name) {
+        this.name = name;
+    }
 }

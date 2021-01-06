@@ -40,4 +40,14 @@ public class MarketTask {
     private Date deadlineDate;
     @Column
     private Date finishDate;
+
+    public MarketTask(Market market, List<Product> products) {
+        this.market = market;
+        this.products = products;
+        initMarketTaskReport();
+    }
+
+    private void initMarketTaskReport() {
+        this.marketTaskReport = new MarketTaskReport(products);
+    }
 }

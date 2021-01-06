@@ -33,4 +33,12 @@ public class Market {
 
     @Transient
     private List<ScoreRecord> records;
+
+    public Market(String name) {
+        this.name = name;
+    }
+
+    public void addScoreRecord(ScoreRecord scoreRecord) {
+        this.getRecords().add(scoreRecord);
+    }
 }

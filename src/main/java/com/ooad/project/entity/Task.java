@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,26 +41,38 @@ public class Task {
     @Transient
     private Expert expert;
     @Transient
+    private List<Market> markets;
+    @Transient
     private List<MarketTask> marketTasks;
     @Transient
     private List<Product> products;
 
 
     /* 农贸市场自检任务 */
-    public Task(int id, String name, List<MarketTask> marketTasks, List<Product> products, Date startDate, Date deadlineDate) {
-        this.id = id;
+    public Task(String name, List<Market> markets, List<Product> products, Date startDate, Date deadlineDate) {
         this.name = name;
-        this.marketTasks = marketTasks;
+        this.markets = markets;
         this.products = products;
         this.startDate = startDate;
         this.deadlineDate = deadlineDate;
 
         this.isFinished = false;
+
+        initMarketTasks();
     }
 
     /* 专家任务 */
-    public Task(int id, String name, List<MarketTask> marketTasks, List<Product> products, Date startDate, Date deadlineDate, Expert expert) {
-        this(id, name, marketTasks, products, startDate, deadlineDate);
+    public Task(String name, List<Market> markets, List<Product> products, Date startDate, Date deadlineDate, Expert expert) {
+        this(name, markets, products, startDate, deadlineDate);
         this.expert = expert;
+    }
+
+    private void initMarketTasks() {
+        this.setMarketTasks(new ArrayList<>());
+        for (Market market: this.getMarkets()) {
+            MarketTask marketTask = new MarketTask(market, this.getProducts());
+
+            this.getMarketTasks().add(marketTask);
+        }
     }
 }

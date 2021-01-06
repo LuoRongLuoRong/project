@@ -19,6 +19,7 @@ import java.util.*;
  + getUnfinishedProductsByMarketTask(marketTask: MarketTask)
  + getUnqualifiedProductsByInterval(product, fisrtFinishDate, secondFinishDate)
  *
+ * 调用该方法时需要先使用 Task 绑定一下
  */
 
 //@Service // task 输入的时候会报错，看着很不爽啊

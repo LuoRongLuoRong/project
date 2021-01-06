@@ -31,5 +31,5 @@ public class ProductCheckRecord {
     @Column
     private int unqualifiedNumber; // 不合格数目
     @Column
-    private boolean isFinished; // 抽检结束
+    private boolean isFinished; // 抽检是否结束
 }

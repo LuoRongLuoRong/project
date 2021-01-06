@@ -42,9 +42,53 @@ src
 
 
 
-
+##### 2. CrudRepository
 
 `CrudRepository`实现基本的 CRUD 操作，包括 count，delete，deleteById，save，saveAll，findById 和 findAll。
+
+- save(entity):添加一条数据
+- save(entities)：添加多条数据entities为集合
+- findOne(id)：根据id查询一条数据
+- exists(id)：判断id是否存在
+- findAll()：查询全部数据
+- delete(id)：根据id删除数据
+- delete(entity)：根据一条数据的信息删除数据
+- delete(entities)：根据多条数据的信息删除数据
+- deleteAll()：删除全部信息
+
+
+
+
+
+#### 测试的数据名称
+
+##### 1. 农贸市场
+
+绿地农贸市场：Green Land Market
+
+红土农贸市场：Red Land Market
+
+蓝天农贸市场：Blue Sky Market
+
+##### 2. 专家
+
+Lucy
+
+Lily
+
+Dino
+
+##### 3. 农产品
+
+蔬菜类 Vegetable
+
+水产品 Aquatic
+
+畜禽肉类 Meat
+
+
+
+ 
 
 
 
