@@ -4,6 +4,7 @@ import com.ooad.project.entity.*;
 import com.ooad.project.repo.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
@@ -23,26 +24,26 @@ import java.util.*;
  */
 
 //@Service // task 输入的时候会报错，看着很不爽啊
-@Setter
-@Getter
-public class ReportService {
 
+public class TaskReportService {
+
+    @Getter
     private Task task;
 
-    private MarketTaskReportRepository marketTaskReportRepository;
-    private ProductRepository productRepository;
-    private ProductCheckRecordRepository productCheckRecordRepository;
-    private TaskRepository taskRepository;
-    private MarketTaskRepository marketTaskRepository;
-    private ScoreRecordRepository recordRepository;
+//    private MarketTaskReportRepository marketTaskReportRepository;
+//    private ProductRepository productRepository;
+//    private ProductCheckRecordRepository productCheckRecordRepository;
+//    private TaskRepository taskRepository;
+//    private MarketTaskRepository marketTaskRepository;
+//    private ScoreRecordRepository recordRepository;
 
     // 这个报错可以看看 https://www.cnblogs.com/Howinfun/p/11731826.html
-    public ReportService(Task task) {
+    public TaskReportService(Task task) {
         this.task = task;
     }
 
     /**
-     *
+     * 查看未完成的任务
      * @return
      */
     public List<MarketTask> getUnfinishedMarketTasks() {
@@ -80,42 +81,5 @@ public class ReportService {
         return retProducts;
     }
 
-    /**
-     * 从两次抽检日期中查看某个农贸产品类别在某个时间范围内的总的不合格数
-     * @param product
-     * @param firstFinishDate
-     * @param secondFinishDate
-     * @return
-     */
-    public int getUnqualifiedProductNumberByInterval(Product product, Date firstFinishDate, Date secondFinishDate) {
-        int number = 0;
-        /*
-        // TODO: 这方法也不知道能不能运行。好像不太行
-        List<ProductCheckRecord> records = productCheckRecordRepository.findDistinctByProductAndFinishDateAfterAndFinishDateBefore(product, firstFinishDate, secondFinishDate);
-        for (ProductCheckRecord record: records) {
-            number += record.getUnqualifiedNumber();
-        }*/
 
-        List<ProductCheckRecord> records = productCheckRecordRepository.findAll();
-        for (ProductCheckRecord record: records) {
-            // 尚未结束抽检
-            if (!record.isFinished()) {
-                continue;
-            }
-
-            // 产品不符合
-            Product recordProduct = record.getProduct();
-            if (product.getId() != recordProduct.getId()) {
-                continue;
-            }
-
-            // 抽检时间是否满足
-            Date finishDate = record.getFinishDate();
-            if (finishDate.after(firstFinishDate) && finishDate.before(secondFinishDate)) {
-                number += record.getUnqualifiedNumber();
-            }
-        }
-
-        return number;
-    }
 }

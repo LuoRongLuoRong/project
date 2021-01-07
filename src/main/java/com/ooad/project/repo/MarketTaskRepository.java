@@ -3,6 +3,7 @@ package com.ooad.project.repo;
 import com.ooad.project.entity.MarketTask;
 import com.ooad.project.entity.MarketTaskReport;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * User: Admin
@@ -12,6 +13,7 @@ import org.springframework.data.repository.CrudRepository;
  * Student Number:17302010081
  * Note:
  */
+@Repository
 public interface MarketTaskRepository extends CrudRepository<MarketTask, Integer> {
     // TODO: 此处用 getMarketTaskReport 似乎是不对的，为什么呢
 

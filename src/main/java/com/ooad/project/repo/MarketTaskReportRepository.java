@@ -4,6 +4,7 @@ import com.ooad.project.entity.MarketTask;
 import com.ooad.project.entity.MarketTaskReport;
 import com.ooad.project.entity.Product;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,6 @@ import java.util.Map;
  * Note:
  * 某种蔬菜的不合格数目
  */
-
+@Repository
 public interface MarketTaskReportRepository extends CrudRepository<MarketTaskReport, Integer> {
 }

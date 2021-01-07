@@ -3,7 +3,9 @@ package com.ooad.project.service;
 import com.ooad.project.entity.Market;
 import com.ooad.project.repo.MarketRepository;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * User: Admin
@@ -19,23 +21,21 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 
-@Getter
+@Service
 public class ScoreService {
-
+    @Getter
+    @Setter
     private Market market;
 
     @Autowired
     private MarketRepository marketRepository;
 
-    public ScoreService(Market market) {
-        this.market = market;
-    }
 
-    public int getScoreByMarketID(int marketId) {
-        return marketRepository.getScoreById(marketId);
-    }
-
-    public int getScoreByMarketName(String marketName) {
-        return marketRepository.getScoreByName(marketName);
-    }
+//    public int getScoreByMarketID(int marketId) {
+//        return marketRepository.getScoreById(marketId);
+//    }
+//
+//    public int getScoreByMarketName(String marketName) {
+//        return marketRepository.getScoreByName(marketName);
+//    }
 }

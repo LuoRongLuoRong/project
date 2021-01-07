@@ -3,6 +3,7 @@ package com.ooad.project.repo;
 import com.ooad.project.entity.Product;
 import com.ooad.project.entity.Task;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Student Number:17302010081
  * Note:
  */
+@Repository
 public interface TaskRepository extends CrudRepository<Task, Integer> {
 
     List<Product> getProductsById(int id);

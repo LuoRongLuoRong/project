@@ -4,6 +4,7 @@ import com.ooad.project.entity.Product;
 import com.ooad.project.entity.ProductCheckRecord;
 import com.ooad.project.entity.ScoreRecord;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * Student Number:17302010081
  * Note:
  */
+@Repository
 public interface ProductCheckRecordRepository extends CrudRepository<ProductCheckRecord, Integer> {
     List<ProductCheckRecord> findAll();
 

@@ -32,8 +32,8 @@ public class IndicatorService {
         this.task = task;
     }
 
-    /* 每天自动执行一遍 */
-    public void updateScore(Date currDate) {
+    /* 更新每个市场的评分 */
+    public void update(Date currDate) {
         List<MarketTask> marketTasks = this.getTask().getMarketTasks();
         for (MarketTask marketTask: marketTasks) {
             Market market = marketTask.getMarket();
@@ -46,7 +46,7 @@ public class IndicatorService {
 
             // 1. 未完成未到期：0
             if (!isFinished && !isDue) {
-                break;
+                continue;
             }
 
             ScoreRecord record = new ScoreRecord();
@@ -55,31 +55,28 @@ public class IndicatorService {
 
             // 2. 已完成未到期：+10
             if (isFinished && !isDue) {
-                // TODO: 可以抽取成一个方法
-                record.setDescription("TODO");
-                record.setScore(10);
-                market.addScoreRecord(record);
-                break;
+                addScoreRecord(market, record, "TODO1", 10);
+                continue;
             }
 
             boolean isDueOver1Day = (currDate.getTime() - deadlineDate.getTime()) / 1000 / 3600 / 24 == 1;
             // 3. 未完成已过期 20 天之内：-10
             if (!isFinished && isDueOver1Day) {
-                record.setDescription("TODO");
-                record.setScore(-10);
-                market.addScoreRecord(record);
-                break;
+                addScoreRecord(market, record, "TODO2", -10);
+                continue;
             }
 
             boolean isDueOver20Days = (currDate.getTime() - finishDate.getTime()) / 1000 / 3600 / 24 == 20;
             // 4. 未完成已过期 20 天之后：-20
             if (!isFinished && isDueOver20Days) {
-                record.setDescription("TODO");
-                record.setScore(-10);
-                market.addScoreRecord(record);
-                break;
+                addScoreRecord(market, record, "TODO3", -10);
             }
-
         }
+    }
+
+    private void addScoreRecord(Market market, ScoreRecord record, String recordDescription, int score) {
+        record.setDescription(recordDescription);
+        record.setScore(score);
+        market.addScoreRecord(record);
     }
 }
