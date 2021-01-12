@@ -6,22 +6,18 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
- * User: Admin
- * Date: 2020/12/26
- * Time: 13:21
- * Author: LuoRong
- * Student Number:17302010081
- * Note:
+ * @author 刘佳兴
+ * @date 2021/1/9 21:24
+ * mail 1260968291@qq.com
  */
 
 @Getter
 @Setter
 @Entity
-@Table(name = "products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -29,5 +25,17 @@ public class Product {
 
     public Product(String name) {
         this.name = name;
+    }
+
+    public Product() {}
+
+    @Override
+    public boolean equals(Object o){
+        return o instanceof Product && ((Product) o).name.equals(this.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

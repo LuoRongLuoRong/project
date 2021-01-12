@@ -1,45 +1,57 @@
 package com.ooad.project.entity;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.ooad.project.entity.interfaces.ISupervise;
+import com.ooad.project.entity.interfaces.ITask;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * User: Admin
- * Date: 2020/12/26
- * Time: 13:20
- * Author: LuoRong
- * Student Number:17302010081
- * Note:
+ * @author 刘佳兴
+ * @date 2021/1/9 21:24
+ * mail 1260968291@qq.com
  */
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "markets")
-public class Market {
+@AllArgsConstructor
+public class Market implements ISupervise, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增长策略
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Column
     private String name;
 
-    @Column
-    private int score;
-
     @Transient
-    private List<ScoreRecord> records;
+    private List<MarketSelfCheckTask> tasks;
 
     public Market(String name) {
         this.name = name;
     }
 
-    public void addScoreRecord(ScoreRecord scoreRecord) {
-        this.getRecords().add(scoreRecord);
+    public Market() {}
+
+    public void addMarketSelfCheckTask(MarketSelfCheckTask marketSelfCheckTask) {
+        tasks.add(marketSelfCheckTask);
+    }
+
+    public List<MarketSelfCheckTask> getUnfinishedTasks(){
+        return (List<MarketSelfCheckTask>) tasks.stream().filter(MarketSelfCheckTask::isFinished);
+    }
+
+    @Override
+    public boolean checkMyTask(ITask iTask) {
+        return iTask instanceof MarketSelfCheckTask && tasks.indexOf(iTask) >= 0;
     }
 }
