@@ -1,7 +1,7 @@
 package com.ooad.project.repo;
 
 import com.ooad.project.entity.Expert;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ExpertRepository extends CrudRepository<Expert,Integer> {
+public interface ExpertRepository extends JpaRepository<Expert,Integer> {
     /**
      * 工厂模式，根据专家的名称找到专家对象
      * @param name 名称

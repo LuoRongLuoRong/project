@@ -1,6 +1,11 @@
 package com.ooad.project.entity.interfaces;
 
+import com.ooad.project.entity.Market;
+import com.ooad.project.entity.Product;
+import com.ooad.project.entity.ProductCheckResult;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 刘佳兴
@@ -10,26 +15,48 @@ import java.util.Date;
 public interface ITask {
 
     /**
-     * 设置任务的完成信息
-     * @param info 完成信息
-     */
-    void setFinishInfo(String info);
-
-    /**
      * 设置任务的完成时间
      * @param finishDate 完成时间
      */
     void setFinishDate(Date finishDate);
 
     /**
-     * 设置是否已已经完成
-     * @param finished 是否已经完成
+     * 获得结束时间
+     * @return 结束时间
      */
-    void setFinished(boolean finished);
+    Date getFinishDate();
+
 
     /**
-     * 设置任务报告
-     * @param iTaskReport 任务报告
+     * 获得任务的截至时间
+     * @return 任务的截止时间
      */
-    void setTaskReport(ITaskReport iTaskReport);
+    Date getDeadline();
+
+    /**
+     * 设置任务的截至时间
+     * @param deadline 截至时间
+     */
+    void setDeadline(Date deadline);
+
+    /**
+     * 是否已经结束
+     * @return 是否已经结束
+     */
+    boolean isFinished();
+
+    /**
+     * 添加一项抽查结果
+     * @param market 市场
+     * @param productCheckResultList 农产品类型抽查结果
+     * @param superviseDate 抽检日期
+     */
+    void addSuperviseResult(Market market,  List<ProductCheckResult> productCheckResultList, Date superviseDate);
+
+    /**
+     * 获得当前task某个农产品类型的所有检查结果
+     * @param product 农产品类型
+     * @return 检查结果列表
+     */
+    List<ProductCheckResult> getProductCheckResultsByProduct(Product product);
 }

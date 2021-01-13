@@ -1,6 +1,10 @@
 package com.ooad.project.entity.interfaces;
 
+import com.ooad.project.entity.Market;
+import com.ooad.project.entity.ProductCheckResult;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 刘佳兴
@@ -10,19 +14,19 @@ import java.util.Date;
 public interface ISupervise {
 
     /**
-     * 作为任务执行人为任务设置反馈信息和时间，完成任务
+     * 作为任务执行人抽查某个市场的部分农产品类型
      * @param iTask 任务
-     * @param info 任务完成信息
-     * @param date 任务完成时间
-     * @param iTaskReport 任务报告
+     * @param market 市场
+     * @param productCheckResultList 农产品类型
+     * @param superviseDate 抽检时间
      */
-
-    default void finishTask(ITask iTask, String info, Date date, ITaskReport iTaskReport){
+    default void supervise(ITask iTask, Market market, List<ProductCheckResult> productCheckResultList, Date superviseDate){
         if(checkMyTask(iTask)){
-            iTask.setFinishDate(date);
-            iTask.setFinishInfo(info);
-            iTask.setFinished(true);
-            iTask.setTaskReport(iTaskReport);
+            // 为此次抽查的所有农产品设定抽查时间
+            productCheckResultList.forEach(productCheckResult -> {
+                productCheckResult.setCheckDate(superviseDate);
+            });
+            iTask.addSuperviseResult(market, productCheckResultList,superviseDate);
         }
     }
 
@@ -32,4 +36,10 @@ public interface ISupervise {
      * @return 是否是自己的任务
      */
     boolean checkMyTask(ITask iTask);
+
+    /**
+     * 获得自己的所有task
+     * @return tasks
+     */
+    List<ITask> getMyTasks();
 }

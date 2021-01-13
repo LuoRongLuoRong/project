@@ -1,7 +1,7 @@
 package com.ooad.project.repo;
 
 import com.ooad.project.entity.Product;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product,Integer> {
+public interface ProductRepository extends JpaRepository<Product,Integer> {
     /**
      * 工厂模式，根据产品分类名称查找产品分类对象
      * @param name 产品分类名称

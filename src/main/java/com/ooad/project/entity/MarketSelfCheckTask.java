@@ -1,9 +1,11 @@
 package com.ooad.project.entity;
 import com.ooad.project.entity.interfaces.ITask;
-import com.ooad.project.entity.interfaces.ITaskReport;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * @author 刘佳兴
@@ -16,17 +18,47 @@ public class MarketSelfCheckTask implements ITask {
     private List<Product> products;
     private Date deadline;
     private Date finishDate;
-    private String finishInfo;
     private String description;
+    private TaskReport taskReport;
 
-    public ITaskReport getTaskReport() {
-        return taskReport;
-    }
-
-    private ITaskReport taskReport;
-
+    @Override
     public boolean isFinished() {
         return isFinished;
+    }
+
+    private List<Product> steam2List(Stream<Product> productStream){
+        List<Product> products = new ArrayList<>();
+        productStream.forEach(products::add);
+        return products;
+    }
+
+    @Override
+    public void addSuperviseResult(Market market, List<ProductCheckResult> productCheckResultList, Date superviseDate) {
+        // 已经finished后不允许添加入报告中
+        if(isFinished){
+            return;
+        }
+        List<ProductCheckResult> allProductCheckResults = taskReport.addSuperviseResult(market, productCheckResultList);
+        // 获得该市场检查过的所有农产品类型
+        List<Product> checkedProducts = steam2List(allProductCheckResults.stream().map(ProductCheckResult::getProduct));
+        boolean isFinished = true;
+        // 查找是否所有的Product都check了
+        for(Product p: products){
+            if(checkedProducts.indexOf(p) < 0){
+                isFinished = false;
+                break;
+            }
+        }
+        // 如果所有的product都check了，则设置任务的时间和状态
+        if(isFinished){
+            setFinishDate(superviseDate);
+            setFinished(true);
+        }
+    }
+
+    @Override
+    public List<ProductCheckResult> getProductCheckResultsByProduct(Product product) {
+        return taskReport.findByProduct(product);
     }
 
     private boolean isFinished;
@@ -35,28 +67,18 @@ public class MarketSelfCheckTask implements ITask {
         this.products = products;
         this.deadline = deadline;
         this.description = description;
+        this.taskReport = new TaskReport();
     }
 
     public MarketSelfCheckTask() {}
-
-    @Override
-    public void setFinishInfo(String info) {
-        this.finishInfo = info;
-    }
 
     @Override
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
 
-    @Override
     public void setFinished(boolean finished) {
         this.isFinished = finished;
-    }
-
-    @Override
-    public void setTaskReport(ITaskReport iTaskReport) {
-        this.taskReport = iTaskReport;
     }
 
     public List<Product> getProducts() {
@@ -67,20 +89,19 @@ public class MarketSelfCheckTask implements ITask {
         this.products = products;
     }
 
+    @Override
     public Date getDeadline() {
         return deadline;
     }
 
+    @Override
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
+    @Override
     public Date getFinishDate() {
         return finishDate;
-    }
-
-    public String getFinishInfo() {
-        return finishInfo;
     }
 
     public String getDescription() {

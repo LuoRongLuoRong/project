@@ -46,7 +46,8 @@ public class CrudService {
         return new MarketSelfCheckTask(description, products, deadline);
     }
 
-    public ExpertSamplingTask getExpertSamplingTask(String description, List<Product> products, List<Market> markets){
-        return new ExpertSamplingTask(description, products, markets);
+    public ExpertSamplingTask getExpertSamplingTask(String description, List<Product> products, List<Market> markets, Date deadline){
+        return new ExpertSamplingTask(description, products, markets, deadline);
     }
+
 }

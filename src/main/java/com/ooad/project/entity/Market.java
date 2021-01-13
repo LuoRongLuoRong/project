@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,8 +34,12 @@ public class Market implements ISupervise, Serializable {
     @Column
     private String name;
 
+    public List<MarketSelfCheckTask> getTasks() {
+        return tasks;
+    }
+
     @Transient
-    private List<MarketSelfCheckTask> tasks;
+    private List<MarketSelfCheckTask> tasks = new ArrayList<>();
 
     public Market(String name) {
         this.name = name;
@@ -47,11 +52,28 @@ public class Market implements ISupervise, Serializable {
     }
 
     public List<MarketSelfCheckTask> getUnfinishedTasks(){
-        return (List<MarketSelfCheckTask>) tasks.stream().filter(MarketSelfCheckTask::isFinished);
+        List<MarketSelfCheckTask> marketSelfCheckTasks = new ArrayList<>();
+        tasks.stream().filter(marketSelfCheckTask -> (!marketSelfCheckTask.isFinished())).forEach(marketSelfCheckTasks::add);
+        return marketSelfCheckTasks;
     }
 
     @Override
     public boolean checkMyTask(ITask iTask) {
         return iTask instanceof MarketSelfCheckTask && tasks.indexOf(iTask) >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public List<ITask> getMyTasks() {
+        return new ArrayList<>(tasks);
     }
 }
