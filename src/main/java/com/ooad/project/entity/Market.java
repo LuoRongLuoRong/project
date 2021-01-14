@@ -1,6 +1,4 @@
 package com.ooad.project.entity;
-import com.ooad.project.entity.interfaces.ISupervise;
-import com.ooad.project.entity.interfaces.ITask;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.ooad.project.entity.interfaces;
+package com.ooad.project.entity;
 
 import java.util.Date;
 

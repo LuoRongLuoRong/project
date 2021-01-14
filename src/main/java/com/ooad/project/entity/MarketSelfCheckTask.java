@@ -1,10 +1,8 @@
 package com.ooad.project.entity;
-import com.ooad.project.entity.interfaces.ITask;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**

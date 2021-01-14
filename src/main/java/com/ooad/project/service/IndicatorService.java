@@ -1,12 +1,10 @@
 package com.ooad.project.service;
 
-import com.ooad.project.entity.Expert;
-import com.ooad.project.entity.MyFinishingScoreStrategy;
 import com.ooad.project.entity.Product;
 import com.ooad.project.entity.ProductCheckResult;
-import com.ooad.project.entity.interfaces.FinishingScoreStrategy;
-import com.ooad.project.entity.interfaces.ISupervise;
-import com.ooad.project.entity.interfaces.ITask;
+import com.ooad.project.entity.FinishingScoreStrategy;
+import com.ooad.project.entity.ISupervise;
+import com.ooad.project.entity.ITask;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 

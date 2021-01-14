@@ -1,7 +1,7 @@
 package com.ooad.project;
 
 import com.ooad.project.entity.*;
-import com.ooad.project.entity.interfaces.ITask;
+import com.ooad.project.entity.ITask;
 import com.ooad.project.service.CrudService;
 import com.ooad.project.service.IndicatorService;
 import org.junit.jupiter.api.Assertions;

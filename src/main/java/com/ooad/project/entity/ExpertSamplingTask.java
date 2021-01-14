@@ -1,6 +1,5 @@
 package com.ooad.project.entity;
 
-import com.ooad.project.entity.interfaces.ITask;
 import lombok.Getter;
 import lombok.Setter;
 

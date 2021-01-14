@@ -1,7 +1,4 @@
-package com.ooad.project.entity.interfaces;
-
-import com.ooad.project.entity.Market;
-import com.ooad.project.entity.ProductCheckResult;
+package com.ooad.project.entity;
 
 import java.util.Date;
 import java.util.List;

@@ -1,7 +1,5 @@
 package com.ooad.project.entity;
 
-import com.ooad.project.entity.interfaces.FinishingScoreStrategy;
-import com.ooad.project.entity.interfaces.ITask;
 import java.util.Date;
 
 /**
