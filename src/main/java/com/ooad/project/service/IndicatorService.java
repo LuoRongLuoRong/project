@@ -4,6 +4,7 @@ import com.ooad.project.entity.Expert;
 import com.ooad.project.entity.MyFinishingScoreStrategy;
 import com.ooad.project.entity.Product;
 import com.ooad.project.entity.ProductCheckResult;
+import com.ooad.project.entity.interfaces.FinishingScoreStrategy;
 import com.ooad.project.entity.interfaces.ISupervise;
 import com.ooad.project.entity.interfaces.ITask;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 @RestController
 public class IndicatorService {
-    public int update(MyFinishingScoreStrategy myFinishingScoreStrategy, ISupervise supervise, Date currentTime){
+    public int update(FinishingScoreStrategy myFinishingScoreStrategy, ISupervise supervise, Date currentTime){
         int totalScore = 0;
         for(ITask task: supervise.getMyTasks()){
             totalScore += myFinishingScoreStrategy.getScore(task,currentTime);
