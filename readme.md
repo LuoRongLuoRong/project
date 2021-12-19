@@ -20,5 +20,12 @@ dbms.default_database=codeapi_class.db
 
 > 如果在 neo4j 启动后报错提示 database 的名称中含有 illegal charactrs，说明版本太高，需要 jvm11及以上，因此建议下载 3.5 版本的 commmunity neo4j。
 
-## 2. 连接前端
+## 2. 使用 popoto
+
+我已经使用 popoto 写好大致的框架，并将 driver 改成了本地数据库。使用浏览器打开本文件夹下的 `demo/index.html` 文件（需要修改为自己的 neo4j 密码），可以看到我们需要做的部分。
+
+目前的任务需求：
+
+- 添加节点：有三个节点，class，method，field。
+- 添加类似 neo4j 的命令行，即：可以像 neo4j 一样通过输入命令行得到节点，进行展示。
 
