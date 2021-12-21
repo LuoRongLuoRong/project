@@ -20,7 +20,7 @@
 
 <section class="ppt-section-main" style="height: 1800px">
     <div class="ppt-section-header">
-        <span class="ppt-header-span">Neo4j movie graph -</span> Add relation event customization
+        <span class="ppt-header-span">Neo4j movie graph -</span> 代码知识图谱演示系统
     </div>
     
     <div id="popoto-query" class="ppt-container-query">
@@ -163,7 +163,7 @@
 
     driver.verifyConnectivity().then(function () {
         // Start the generation using parameter as root label of the query.
-        popoto.start("Person");
+        popoto.start("classinfo");
     }).catch(function (error) {
         document.getElementById("modal").style.display = "block";
         document.getElementById("error-content").innerText = error;
