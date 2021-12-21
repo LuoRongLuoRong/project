@@ -89,38 +89,41 @@
     // Define the list of label provider to customize the graph behavior:
     // Only two labels are used in Neo4j movie graph example: "Movie" and "Person"
     popoto.provider.node.Provider = {
-        "": {},
-        "Movie": {
-            "returnAttributes": ["title", "released", "tagline"],
-            "constraintAttribute": "title"
+       "classinfo": {
+            "returnAttributes": ["className", "projectName"],
+            "constraintAttribute": "className"
         },
-        "Person": {
-            "returnAttributes": ["name", "born"],
-            "constraintAttribute": "name",
+        "methodinfo": {
+            "returnAttributes": ["methodName", "className", "returnType"],
+            "constraintAttribute": "methodName"
+        },
+        "fieldinfo": {
+            "returnAttributes": ["fieldName", "methodName", "packageName"],
+            "constraintAttribute": "fieldName",
             // "autoExpandRelations": true, // if set to true Person nodes will be automatically expanded in graph
             // Customize result display for Person nodes:
-            "displayResults": function (pResultElmt) {
-
-                // Here D3.js mechanisms is used to generate HTML code.
-                // By default Popoto.js generates a <p> element for each result.
-                // pResultElmt parameter is the <p> element selected with D3.js
-                // So for "Person" result nodes two elements are generated:
-
-                // An <h3> element containing the person name
-                pResultElmt.append("h3")
-                    .text(function (result) {
-                        return result.attributes.name;
-                    });
-
-                // A <span> element with the computed age from born attribute
-                pResultElmt.filter(function (result) {
-                    // Filter on attribute having born attribute value
-                    return result.attributes.born;
-                }).append("span").text(function (result) {
-                    return "Age: " + (new Date().getFullYear() - result.attributes.born);
-                });
-
-            }
+            // "displayResults": function (pResultElmt) {
+            //
+            //     // Here D3.js mechanisms is used to generate HTML code.
+            //     // By default Popoto.js generates a <p> element for each result.
+            //     // pResultElmt parameter is the <p> element selected with D3.js
+            //     // So for "Person" result nodes two elements are generated:
+            //
+            //     // An <h3> element containing the person name
+            //     pResultElmt.append("h3")
+            //         .text(function (result) {
+            //             return result.attributes.name;
+            //         });
+            //
+            //     // A <span> element with the computed age from born attribute
+            //     pResultElmt.filter(function (result) {
+            //         // Filter on attribute having born attribute value
+            //         return result.attributes.born;
+            //     }).append("span").text(function (result) {
+            //         return "Age: " + (new Date().getFullYear() - result.attributes.born);
+            //     });
+            //
+            // }
         }
     };
 
