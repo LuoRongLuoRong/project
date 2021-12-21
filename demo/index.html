@@ -20,7 +20,7 @@
 
 <section class="ppt-section-main" style="height: 1800px">
     <div class="ppt-section-header">
-        <span class="ppt-header-span">Neo4j movie graph -</span> Add relation event customization
+        <span class="ppt-header-span">code knowlwdge graph</span> 
     </div>
     
     <div id="popoto-query" class="ppt-container-query">
@@ -68,7 +68,7 @@
      */
     var driver = neo4j.driver(
         "bolt://localhost", //Encrypted with Full Certificate
-        neo4j.auth.basic("neo4j", "123456"),
+        neo4j.auth.basic("neo4j", "589985"),
     );
 
     /**
@@ -90,41 +90,25 @@
     // Only two labels are used in Neo4j movie graph example: "Movie" and "Person"
     popoto.provider.node.Provider = {
        "classinfo": {
-            "returnAttributes": ["className", "projectName"],
-            "constraintAttribute": "className"
+            "returnAttributes": ["className", "ID", "projectName", "isGodClass", "isInterface", "filePath"],
+            "constraintAttribute": "className",
         },
         "methodinfo": {
-            "returnAttributes": ["methodName", "className", "returnType"],
+            "returnAttributes": ["methodName", "methodContent", "qualifiedName", "methodParameters", "className", "ID", "projectName", "returnType"],
             "constraintAttribute": "methodName"
         },
+        "methodinvocationinfo": {
+            "returnAttributes": ["callMethodName", "callMethodParameters",  "calledClassName", "callClassName", "ID", "projectName", "calledMethodName", "callMethodReturnType"],
+            "constraintAttribute": "callMethodName",
+        },
         "fieldinfo": {
-            "returnAttributes": ["fieldName", "methodName", "packageName"],
+            "returnAttributes": ["fieldName", "className", "packageName", "ID", "projectName", "qualifiedName"],
             "constraintAttribute": "fieldName",
-            // "autoExpandRelations": true, // if set to true Person nodes will be automatically expanded in graph
-            // Customize result display for Person nodes:
-            // "displayResults": function (pResultElmt) {
-            //
-            //     // Here D3.js mechanisms is used to generate HTML code.
-            //     // By default Popoto.js generates a <p> element for each result.
-            //     // pResultElmt parameter is the <p> element selected with D3.js
-            //     // So for "Person" result nodes two elements are generated:
-            //
-            //     // An <h3> element containing the person name
-            //     pResultElmt.append("h3")
-            //         .text(function (result) {
-            //             return result.attributes.name;
-            //         });
-            //
-            //     // A <span> element with the computed age from born attribute
-            //     pResultElmt.filter(function (result) {
-            //         // Filter on attribute having born attribute value
-            //         return result.attributes.born;
-            //     }).append("span").text(function (result) {
-            //         return "Age: " + (new Date().getFullYear() - result.attributes.born);
-            //     });
-            //
-            // }
-        }
+        },
+        "fieldrelation": {
+            "returnAttributes": ["fieldName", "qualifiedFieldName", "methodName", "className", "ID", "projectName", "qualifiedMethodName"],
+            "constraintAttribute": "fieldName",
+        }    
     };
 
     // Change the number of displayed results:
@@ -163,7 +147,7 @@
 
     driver.verifyConnectivity().then(function () {
         // Start the generation using parameter as root label of the query.
-        popoto.start("Person");
+        popoto.start("classinfo");
     }).catch(function (error) {
         document.getElementById("modal").style.display = "block";
         document.getElementById("error-content").innerText = error;
