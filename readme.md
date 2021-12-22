@@ -1,6 +1,9 @@
-# DEMO 展示
+# 高级数据库 DEMO 展示
+
+> 2021 年 12 月 22 日
+
 使用 popoto 来将Neo4j的代码知识图谱在html前端显示出来，包括调用关系和节点等等
-（数据库已有，前端可视化+可cql查询即可）
+（数据库已有，前端可视化 + 可cql查询即可）
 
 ## 1. neo4j 导入数据
 
@@ -37,3 +40,5 @@ https://github.com/Nhogs/popoto/wiki
 
 #### step 1： 启动 neo4j；
 #### step 2： 在浏览器打开 `demo/index.html` 文件即可。
+
+> 如果无法打开文件，可能原因是需要修改 html 文件中 neo4j 的登录密码，目前是 123456。
